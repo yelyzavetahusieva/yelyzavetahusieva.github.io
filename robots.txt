@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://yelyzavetahusieva.github.io/sitemap.xml
+Sitemap: https://yelyzavetahusieva.github.io/personal-website/sitemap.xml
