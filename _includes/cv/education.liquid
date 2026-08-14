@@ -1,0 +1,115 @@
+{% comment %}
+  Unified education entry renderer for both RenderCV and JSONResume formats
+  Handles both:
+  - RenderCV: institution, area, studyType (or degree), start_date, end_date, location, courses, highlights
+  - JSONResume: institution, area, studyType, startDate, endDate, location, courses, highlights
+
+  Local override of al_folio_cv's education.liquid: replaces the boxed date-badge +
+  location-icon left column with a single plain "Mon YYYY – Mon YYYY · Location" line.
+{% endcomment %}
+
+<ul class="card-text font-weight-light list-group list-group-flush">
+  {% for entry in entries %}
+    <li class="list-group-item">
+      {% capture start_date %}
+        {% if entry.start_date %}{{ entry.start_date }}{% elsif entry.startDate %}{{ entry.startDate }}{% endif %}
+      {% endcapture %}
+      {% assign start_date = start_date | strip %}
+      {% capture end_date %}
+        {% if entry.end_date %}{{ entry.end_date }}{% elsif entry.endDate %}{{ entry.endDate }}{% endif %}
+      {% endcapture %}
+      {% assign end_date = end_date | strip %}
+      {% capture point_date %}
+        {% if entry.date %}{{ entry.date }}{% elsif entry.releaseDate %}{{ entry.releaseDate }}{% endif %}
+      {% endcapture %}
+      {% assign point_date = point_date | strip %}
+
+      {% assign months = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec' | split: ',' %}
+
+      {% if start_date != '' %}
+        {% assign start_parts = start_date | split: '-' %}
+        {% assign start_year = start_parts[0] %}
+        {% if start_parts[1] %}
+          {% assign start_month_index = start_parts[1] | plus: 0 | minus: 1 %}
+          {% assign start_label = months[start_month_index] | append: ' ' | append: start_year %}
+        {% else %}
+          {% assign start_label = start_year %}
+        {% endif %}
+
+        {% if end_date != '' %}
+          {% assign end_parts = end_date | split: '-' %}
+          {% assign end_year = end_parts[0] %}
+          {% if end_parts[1] %}
+            {% assign end_month_index = end_parts[1] | plus: 0 | minus: 1 %}
+            {% assign end_label = months[end_month_index] | append: ' ' | append: end_year %}
+          {% else %}
+            {% assign end_label = end_year %}
+          {% endif %}
+        {% else %}
+          {% assign end_label = 'Present' %}
+        {% endif %}
+
+        {% assign date = start_label | append: ' – ' | append: end_label %}
+      {% elsif point_date != '' %}
+        {% assign point_parts = point_date | split: '-' %}
+        {% assign point_year = point_parts[0] %}
+        {% if point_parts[1] %}
+          {% assign point_month_index = point_parts[1] | plus: 0 | minus: 1 %}
+          {% assign date = months[point_month_index] | append: ' ' | append: point_year %}
+        {% else %}
+          {% assign date = point_year %}
+        {% endif %}
+      {% else %}
+        {% assign date = null %}
+      {% endif %}
+
+      {% capture location %}
+        {% if entry.location %}{{ entry.location }}{% endif %}
+      {% endcapture %}
+      {% assign location = location | strip %}
+
+      {% capture study_type %}
+        {% if entry.studyType %}{{ entry.studyType }}{% elsif entry.degree %}{{ entry.degree }}{% endif %}
+      {% endcapture %}
+
+      {% if entry.url %}
+        <h6 class="title font-weight-bold">
+          <a href="{{ entry.url }}">{{ study_type }}</a>
+        </h6>
+      {% elsif study_type != '' %}
+        <h6 class="title font-weight-bold">{{ study_type }}</h6>
+      {% endif %}
+
+      {% if entry.institution %}
+        <h6 style="font-size: 0.95rem">{{ entry.institution }}</h6>
+      {% endif %}
+
+      {% if entry.area %}
+        <h6 style="font-size: 0.95rem; font-style: italic">{{ entry.area }}</h6>
+      {% endif %}
+
+      {% if date or location != '' %}
+        <p class="cv-meta" style="font-size: 0.85rem; opacity: 0.75; margin: 0.25rem 0">
+          {% if date %}{{ date }}{% endif -%}
+          {%- if date and location != '' %} · {% endif -%}
+          {%- if location != '' %}{{ location }}{% endif %}
+        </p>
+      {% endif %}
+
+      {% if entry.courses or entry.highlights %}
+        <ul class="items">
+          {% for item in entry.courses %}
+            <li>
+              <span class="item">{{ item }}</span>
+            </li>
+          {% endfor %}
+          {% for item in entry.highlights %}
+            <li>
+              <span class="item">{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

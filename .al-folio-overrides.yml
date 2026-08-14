@@ -1,10 +1,38 @@
 ---
 version: 1
 overrides:
+  _includes/cv/education.liquid:
+    owner: al_folio_cv
+    gem_version: 1.0.2
+    upstream_path: templates/cv/education.liquid
+    upstream_sha256: f618efe3bc4caeab8f8f6efaae8386d658d4eb6995ebeb32855e173da37f8d2a
+    local_sha256: ec4d096c19d5bac8860cc9ef65d4c9d3895087de67c02c30b07ed5aaaaa89fa0
+    acknowledged_at: "2026-08-14"
+  _includes/cv/experience.liquid:
+    owner: al_folio_cv
+    gem_version: 1.0.2
+    upstream_path: templates/cv/experience.liquid
+    upstream_sha256: 901c87d2e97fea8a679d811e83893267b10eec6ae65b34aee95d8948c5c56c2a
+    local_sha256: 910aac1d2ac5a9b6bba6f554e672c4ec77b2cff9201c93e5f250307d4a5b70ed
+    acknowledged_at: "2026-08-14"
+  _includes/cv/projects.liquid:
+    owner: al_folio_cv
+    gem_version: 1.0.2
+    upstream_path: templates/cv/projects.liquid
+    upstream_sha256: fc028a39f2a71705e7b2d98aabf773fbc8738b82fd800170340c4fdf3a73ace7
+    local_sha256: 229b00a5f54a93160031a23a2811b2709350fa6d96a837e009c24e041124ec6f
+    acknowledged_at: "2026-08-14"
   _includes/footer.liquid:
     owner: al_folio_core
     gem_version: 1.0.15
     upstream_path: _includes/footer.liquid
     upstream_sha256: 65219faad5445eb4456649d77921acd07845875bbcad4fb8f33b12b3d52d96d2
     local_sha256: 83c087c0e5d03738fd6c6f0321c8b5054fe37d9b2cf4294e223fbc7d5cb332a1
+    acknowledged_at: "2026-08-14"
+  _sass/_themes.scss:
+    owner: al_folio_core
+    gem_version: 1.0.15
+    upstream_path: _sass/_themes.scss
+    upstream_sha256: b581e43dcfbf21c14f388e2b585474c886fad62f6b5a0444f7832e7f69745f1f
+    local_sha256: 5d1384a6a2e4234307959bd178336aed1c341e2d350b098f4cc19dc3e1c6c91e
     acknowledged_at: "2026-08-14"

@@ -1,0 +1,93 @@
+{% comment %}
+  Unified projects entry renderer for both formats
+  Handles both:
+  - RenderCV: name, date (or start_date/end_date), url, summary, highlights
+  - JSONResume: name, startDate/endDate, url, summary, highlights
+
+  Local override of al_folio_cv's projects.liquid: replaces the boxed date-badge
+  column with a single plain "Mon YYYY – Mon YYYY" line, matching education/experience.
+{% endcomment %}
+
+<ul class="card-text font-weight-light list-group list-group-flush">
+  {% for entry in entries %}
+    <li class="list-group-item">
+      {% capture start_date %}
+        {% if entry.start_date %}{{ entry.start_date }}{% elsif entry.startDate %}{{ entry.startDate }}{% endif %}
+      {% endcapture %}
+      {% assign start_date = start_date | strip %}
+      {% capture end_date %}
+        {% if entry.end_date %}{{ entry.end_date }}{% elsif entry.endDate %}{{ entry.endDate }}{% endif %}
+      {% endcapture %}
+      {% assign end_date = end_date | strip %}
+      {% capture point_date %}
+        {% if entry.date %}{{ entry.date }}{% elsif entry.releaseDate %}{{ entry.releaseDate }}{% endif %}
+      {% endcapture %}
+      {% assign point_date = point_date | strip %}
+
+      {% assign months = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec' | split: ',' %}
+
+      {% if start_date != '' %}
+        {% assign start_parts = start_date | split: '-' %}
+        {% assign start_year = start_parts[0] %}
+        {% if start_parts[1] %}
+          {% assign start_month_index = start_parts[1] | plus: 0 | minus: 1 %}
+          {% assign start_label = months[start_month_index] | append: ' ' | append: start_year %}
+        {% else %}
+          {% assign start_label = start_year %}
+        {% endif %}
+
+        {% if end_date != '' %}
+          {% assign end_parts = end_date | split: '-' %}
+          {% assign end_year = end_parts[0] %}
+          {% if end_parts[1] %}
+            {% assign end_month_index = end_parts[1] | plus: 0 | minus: 1 %}
+            {% assign end_label = months[end_month_index] | append: ' ' | append: end_year %}
+          {% else %}
+            {% assign end_label = end_year %}
+          {% endif %}
+        {% else %}
+          {% assign end_label = 'Present' %}
+        {% endif %}
+
+        {% assign date = start_label | append: ' – ' | append: end_label %}
+      {% elsif point_date != '' %}
+        {% assign point_parts = point_date | split: '-' %}
+        {% assign point_year = point_parts[0] %}
+        {% if point_parts[1] %}
+          {% assign point_month_index = point_parts[1] | plus: 0 | minus: 1 %}
+          {% assign date = months[point_month_index] | append: ' ' | append: point_year %}
+        {% else %}
+          {% assign date = point_year %}
+        {% endif %}
+      {% else %}
+        {% assign date = null %}
+      {% endif %}
+
+      {% if entry.url %}
+        <h6 class="title font-weight-bold">
+          <a href="{{ entry.url }}" target="_blank">{{ entry.name }}</a>
+        </h6>
+      {% else %}
+        <h6 class="title font-weight-bold">{{ entry.name }}</h6>
+      {% endif %}
+
+      {% if date %}
+        <p class="cv-meta" style="font-size: 0.85rem; opacity: 0.75; margin: 0.25rem 0">{{ date }}</p>
+      {% endif %}
+
+      {% if entry.summary %}
+        <p>{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+      {% endif %}
+
+      {% if entry.highlights %}
+        <ul class="items">
+          {% for item in entry.highlights %}
+            <li>
+              <span class="item">{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
