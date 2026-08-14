@@ -90,17 +90,12 @@
 
       {% if date %}
         <div class="row">
-          <div class="col-xs-2 col-sm-2 col-md-2 text-center date-column">
+          <div class="col-xs-2 col-sm-2 col-md-2 text-center">
             <table class="table-cv">
               <tbody>
                 <tr>
                   <td>
-                    <span
-                      class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
-                      style="display: block; width: 100%; white-space: normal; line-height: 1.15; font-size: 0.7rem"
-                    >
-                      {{- date -}}
-                    </span>
+                    <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px">{{ date }}</span>
                   </td>
                 </tr>
               </tbody>
