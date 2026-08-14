@@ -5,7 +5,8 @@
   - JSONResume: name, startDate/endDate, url, summary, highlights
 
   Local override of al_folio_cv's projects.liquid: same left-column date-badge
-  layout as publications.liquid, but with month/year precision.
+  layout as education/experience/publications (25%/75% column split, full-width
+  block badge), but with month/year precision.
 {% endcomment %}
 
 <ul class="card-text font-weight-light list-group list-group-flush">
@@ -90,18 +91,23 @@
 
       {% if date %}
         <div class="row">
-          <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-            <table class="table-cv">
+          <div class="col-xs-2 col-sm-3 col-md-3 text-center">
+            <table class="table-cv" style="width: 100%">
               <tbody>
                 <tr>
                   <td>
-                    <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px">{{ date }}</span>
+                    <span
+                      class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
+                      style="display: block; width: 100%; text-align: center; line-height: 1.15"
+                    >
+                      {{- date -}}
+                    </span>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="col-xs-10 col-sm-10 col-md-10 mt-2 mt-md-0">{{ entry_body }}</div>
+          <div class="col-xs-10 col-sm-9 col-md-9 mt-2 mt-md-0">{{ entry_body }}</div>
         </div>
       {% else %}
         {{ entry_body }}

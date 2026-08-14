@@ -219,4 +219,16 @@ html[data-theme-setting="light"] {
     border: none;
     border-collapse: collapse;
   }
+
+  // Date badges sit in a fixed-width column and, at the default badge
+  // font-size, a full "Mon YYYY - Mon YYYY" range can be 1-2px wider than
+  // the column (glyph width varies by month abbreviation, e.g. "APR" is
+  // wider than "JUL" even at equal character count), silently wrapping
+  // that one badge to two lines while every other entry stays single-line.
+  // Shrink the font slightly and force nowrap so badge height is uniform
+  // down the whole page.
+  .badge {
+    font-size: 11px;
+    white-space: nowrap;
+  }
 }

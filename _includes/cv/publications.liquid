@@ -1,0 +1,80 @@
+{% comment %}
+  Unified publications entry renderer for both formats
+
+  Local override of al_folio_cv's publications.liquid: same left-column
+  date-badge layout as education/experience/projects (25%/75% column split,
+  full-width block badge) so entry titles line up across every CV section.
+  See docs/ARCHITECTURE.md#local-overrides.
+{% endcomment %}
+
+<ul class="card-text font-weight-light list-group list-group-flush">
+  {% for entry in entries %}
+    <li class="list-group-item">
+      <div class="row">
+        {% comment %} `capture` keeps the surrounding whitespace, so strip before testing for emptiness {% endcomment %}
+        {% capture pub_date %}
+          {% if entry.releaseDate %}{{ entry.releaseDate }}{% elsif entry.date %}{{ entry.date }}{% endif %}
+        {% endcapture %}
+        {% assign pub_date = pub_date | strip %}
+
+        {% if pub_date != '' %}
+          <div class="col-xs-2 col-sm-3 col-md-3 text-center">
+            <table class="table-cv" style="width: 100%">
+              <tbody>
+                <tr>
+                  <td>
+                    <span
+                      class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
+                      style="display: block; width: 100%; text-align: center; line-height: 1.15"
+                    >
+                      {{- pub_date | split: '-' | slice: 0, 1 | join: '' -}}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-xs-10 col-sm-9 col-md-9 mt-2 mt-md-0">
+            {% if entry.url %}
+              <h6 class="title font-weight-bold ml-1 ml-md-4">
+                <a href="{{ entry.url }}">{{ entry.title | default: entry.name }}</a>
+              </h6>
+            {% elsif entry.title %}
+              <h6 class="title font-weight-bold ml-1 ml-md-4">{{ entry.title }}</h6>
+            {% endif %}
+
+            {% if entry.publisher %}
+              <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">
+                <em>{{ entry.publisher }}</em>
+              </h6>
+            {% endif %}
+
+            {% if entry.summary %}
+              <p class="ml-1 ml-md-4">{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+            {% endif %}
+          </div>
+        {% else %}
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            {% if entry.url %}
+              <h6 class="title font-weight-bold ml-1 ml-md-4">
+                <a href="{{ entry.url }}">{{ entry.title | default: entry.name }}</a>
+              </h6>
+            {% elsif entry.title %}
+              <h6 class="title font-weight-bold ml-1 ml-md-4">{{ entry.title }}</h6>
+            {% endif %}
+
+            {% if entry.publisher %}
+              <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">
+                <em>{{ entry.publisher }}</em>
+              </h6>
+            {% endif %}
+
+            {% if entry.summary %}
+              <p class="ml-1 ml-md-4">{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ul>
