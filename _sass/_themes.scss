@@ -226,9 +226,91 @@ html[data-theme-setting="light"] {
   // wider than "JUL" even at equal character count), silently wrapping
   // that one badge to two lines while every other entry stays single-line.
   // Shrink the font slightly and force nowrap so badge height is uniform
-  // down the whole page.
+  // down the whole page. Left-align the date text too, so it reads as a
+  // flush-left rail matching the title text beside it, instead of drifting
+  // to a different horizontal position on every entry depending on how
+  // short that entry's date string happens to be.
   .badge {
     font-size: 11px;
     white-space: nowrap;
+    text-align: left;
+  }
+
+  // Entry typography: one consistent color/size/weight scale for
+  // title/org/description/location, shared by every section (Experience,
+  // Education, Publications, Projects) via the entry-org/entry-meta classes
+  // below, so the CV reads as one coherent document instead of four
+  // separately-tuned ones. Titles pick up the theme accent color even when
+  // they're plain text rather than a link (previously only linked titles,
+  // e.g. Publications, picked up the color from the <a> itself).
+  .title {
+    color: var(--global-theme-color);
+    margin-bottom: 0.15rem;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .entry-org {
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .entry-meta {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--global-text-color-light);
+    margin-bottom: 0.35rem;
+  }
+
+  // Longer entry body copy (Publications' abstract, Projects' summary) -
+  // same size as entry-meta but upright, since italicizing a full paragraph
+  // hurts readability the way it doesn't for a short one-line descriptor.
+  .entry-summary {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .location {
+    font-size: 0.85rem;
+    color: var(--global-text-color-light);
+  }
+
+  .items {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+
+    li {
+      margin-bottom: 0.15rem;
+    }
+  }
+
+  // More breathing room *between* entries, now that the rules above make
+  // the text *within* an entry sit tighter together.
+  .list-group-item {
+    padding-top: 1.15rem;
+    padding-bottom: 1.15rem;
+  }
+
+  // al_folio_core's compiled tailwind.css declares the unconditional
+  // `.mt-2{margin-top:.5rem!important}` utility *after*
+  // `@media(min-width:768px){.mt-md-0{margin-top:0!important}}`, both
+  // inside Tailwind's `components` cascade layer. Per the CSS Cascade
+  // Layers spec, for `!important` declarations an *unlayered* rule always
+  // loses to a *layered* one regardless of specificity or source order, so
+  // a plain override here (outside any @layer) can never win no matter how
+  // specific it is. It has to join the same named layer to even compete;
+  // once it does, its higher specificity (three classes vs. one) wins the
+  // now-fair fight. Without this, the "reset to 0 on desktop" half of the
+  // `mt-2 mt-md-0` pairing every entry's content column uses never actually
+  // applies, at any viewport width, leaving every CV entry's title/body
+  // sitting 8px below its date badge instead of aligned with it.
+  @layer components {
+    @media (min-width: 768px) {
+      .mt-2.mt-md-0 {
+        margin-top: 0 !important;
+      }
+    }
   }
 }

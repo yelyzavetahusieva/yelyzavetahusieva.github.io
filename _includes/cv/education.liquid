@@ -66,7 +66,7 @@
           {% assign date = null %}
         {% endif %}
 
-        <div class="col-xs-2 col-sm-3 col-md-3 text-center">
+        <div class="col-xs-2 col-sm-3 col-md-3">
           <table class="table-cv" style="width: 100%">
             <tbody>
               <tr>
@@ -74,7 +74,7 @@
                   {% if date %}
                     <span
                       class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
-                      style="display: block; width: 100%; text-align: center; line-height: 1.15"
+                      style="display: block; width: 100%; line-height: 1.15"
                     >
                       {{- date -}}
                     </span>
@@ -109,11 +109,11 @@
           {% endif %}
 
           {% if entry.institution %}
-            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">{{ entry.institution }}</h6>
+            <h6 class="entry-org ml-1 ml-md-4">{{ entry.institution }}</h6>
           {% endif %}
 
           {% if entry.area %}
-            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic">{{ entry.area }}</h6>
+            <h6 class="entry-meta ml-1 ml-md-4">{{ entry.area }}</h6>
           {% endif %}
 
           {% if entry.courses or entry.highlights %}

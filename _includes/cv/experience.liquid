@@ -66,7 +66,7 @@
           {% assign date = null %}
         {% endif %}
 
-        <div class="col-xs-2 col-sm-3 col-md-3 text-center">
+        <div class="col-xs-2 col-sm-3 col-md-3">
           <table class="table-cv" style="width: 100%">
             <tbody>
               <tr>
@@ -74,7 +74,7 @@
                   {% if date %}
                     <span
                       class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
-                      style="display: block; width: 100%; text-align: center; line-height: 1.15"
+                      style="display: block; width: 100%; line-height: 1.15"
                     >
                       {{- date -}}
                     </span>
@@ -112,11 +112,11 @@
             {% if entry.name %}{{ entry.name }}{% elsif entry.company %}{{ entry.company }}{% elsif entry.organization %}{{ entry.organization }}{% endif %}
           {% endcapture %}
           {% if company_name != '' %}
-            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">{{ company_name }}</h6>
+            <h6 class="entry-org ml-1 ml-md-4">{{ company_name }}</h6>
           {% endif %}
 
           {% if entry.summary %}
-            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic">
+            <h6 class="entry-meta ml-1 ml-md-4">
               {{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}
             </h6>
           {% endif %}

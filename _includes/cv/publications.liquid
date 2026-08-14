@@ -18,14 +18,14 @@
         {% assign pub_date = pub_date | strip %}
 
         {% if pub_date != '' %}
-          <div class="col-xs-2 col-sm-3 col-md-3 text-center">
+          <div class="col-xs-2 col-sm-3 col-md-3">
             <table class="table-cv" style="width: 100%">
               <tbody>
                 <tr>
                   <td>
                     <span
                       class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
-                      style="display: block; width: 100%; text-align: center; line-height: 1.15"
+                      style="display: block; width: 100%; line-height: 1.15"
                     >
                       {{- pub_date | split: '-' | slice: 0, 1 | join: '' -}}
                     </span>
@@ -44,13 +44,13 @@
             {% endif %}
 
             {% if entry.publisher %}
-              <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">
+              <h6 class="entry-org ml-1 ml-md-4">
                 <em>{{ entry.publisher }}</em>
               </h6>
             {% endif %}
 
             {% if entry.summary %}
-              <p class="ml-1 ml-md-4">{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              <p class="entry-summary ml-1 ml-md-4">{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
             {% endif %}
           </div>
         {% else %}
@@ -64,13 +64,13 @@
             {% endif %}
 
             {% if entry.publisher %}
-              <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">
+              <h6 class="entry-org ml-1 ml-md-4">
                 <em>{{ entry.publisher }}</em>
               </h6>
             {% endif %}
 
             {% if entry.summary %}
-              <p class="ml-1 ml-md-4">{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              <p class="entry-summary ml-1 ml-md-4">{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
             {% endif %}
           </div>
         {% endif %}
