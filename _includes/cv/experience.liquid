@@ -67,12 +67,17 @@
         {% endif %}
 
         <div class="col-xs-2 col-sm-3 col-md-3 text-center">
-          <table class="table-cv">
+          <table class="table-cv" style="width: 100%">
             <tbody>
               <tr>
-                <td>
+                <td style="text-align: left">
                   {% if date %}
-                    <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px">{{ date }}</span>
+                    <span
+                      class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
+                      style="display: block; width: 100%; white-space: normal; text-align: center; line-height: 1.15"
+                    >
+                      {{- date -}}
+                    </span>
                   {% endif %}
                 </td>
               </tr>
