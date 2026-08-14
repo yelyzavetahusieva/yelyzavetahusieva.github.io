@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: husieva.yelyzaveta@gmail.com 
+subtitle: husieva.yelyzaveta@gmail.com
 
 profile:
   align: right
@@ -24,6 +24,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-smth smth 
+smth smth
 
-Originally from Ukraine, lived in 8 countries. 
+Originally from Ukraine, lived in 8 countries.
