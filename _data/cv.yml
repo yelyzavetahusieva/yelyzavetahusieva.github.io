@@ -1,13 +1,15 @@
 cv:
   name: Yelyzaveta Husieva
   email: husieva.yelyzaveta@gmail.com
+  phone: "+44 7469 656545"
   location: London, UK
+  website: https://www.linkedin.com/in/yelyzaveta-husieva
 
   social_networks:
     - network: GitHub
-      username: example
+      username: yelyzavetahusieva
     - network: LinkedIn
-      username: example
+      username: yelyzaveta-husieva
 
   sections:
     Education:
@@ -15,19 +17,17 @@ cv:
         location: London, UK
         area: Computational Statistics and Machine Learning
         studyType: MSc
-        start_date: 2026
-        end_date: 2027
-        courses: Courses
+        start_date: 2026-09
+        end_date: 2027-09
 
       - institution: Minerva University
-        location: San Francisco, California
-        area: Major in Data Science and Statistics, Minor in Economics
+        location: San Francisco, CA
+        area: Data Science and Statistics with Minor in Economics
         studyType: BSc
-        start_date: 2021
-        end_date: 2025
-        score: 3.6/4.0
+        start_date: 2021-09
+        end_date: 2025-05
         highlights:
-          - Relevant coursework
+          - Thesis project on detection of LLM system prompt leaks featured at NeurIPS 2025 AI Education Showcase
 
     Experience:
       - company: TELUS Digital
@@ -35,57 +35,72 @@ cv:
         location: Washington, DC, USA
         start_date: 2025-07
         end_date: 2026-07
-        summary: summary
         highlights:
-          - Relativity
-          - Description 2.
+          - First-author paper (under review, NeurIPS 2026) on the representation geometry of multi-turn LLM jailbreaks across 3 open-source models, providing evidence for why single-turn safety filters underperform against multi-turn jailbreaks.
+          - Prototyped an adaptive multi-turn attack framework for Fuel iX Fortify, an enterprise AI red-teaming platform, that adapts to the target over the course of a conversation and dynamically selects effective attack strategies.
+          - Developed a methodology for measuring consistency of the LLM-based evaluator behind Fuel iX Agent Trainer and delivered a research implementation package for the engineering team, leading to a 2x improvement in evaluation stability.
 
       - company: TELUS Digital (formerly WillowTree)
         position: Applied AI Research Intern
         location: Charlottesville, VA, USA
-        start_date: 2022
-        end_date: 2025
+        start_date: 2021
+        end_date: 2025-06
+        summary: Summers 2021 - 2023, May 2024 - June 2025
         highlights:
-          - Description 1.
-          - Description 2.
+          - Designed and implemented a named entity recognition model for automated detection and classification of adversarial attack methods for an LLM red-teaming platform, outperforming a previous ML-based approach.
+          - Built a perplexity-based output filter that identified 92% of attacks targeting an LLM-based chatbot of a finance company.
+          - Engineered a benchmarking framework to measure LLM hallucination in knowledge graph-based reasoning tasks.
 
       - company: Mamsa
         position: Head of AI
-        location: Remote
-        start_date: 2024
-        end_date: 2025
+        location: Remote, part-time
+        start_date: 2024-09
+        end_date: 2025-09
+        highlights:
+          - Led responsible AI strategy for a startup leveraging voice data to monitor cognitive decline in older adults.
 
       - company: Poatek
         position: Data Science Intern
         location: Porto Alegre, Brazil
         start_date: 2021
         end_date: 2022
-
-    Volunteer:
-      - company: People's Climate March
-        position: Lead Organizer
-        location: Zurich, Switzerland
-        start_date: 2014-04-01
-        end_date: 2015-07-01
-        summary: Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.
         highlights:
-          - "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march."
-          - "Men of the year 2014 by Time magazine"
+          - Built, trained, and evaluated a VGG-LSTM visual-language model to generate reliable radiology reports from X-ray scans.
+          - Applied PEFT methods to optimize trainable parameters of a visual-language model, reducing training time by 50%.
+          - Used causal inference algorithms to research how students' socioeconomic factors affect education outcomes in Brazil.
+
+    Programs & Courses:
+      - label: Ml4Good Bootcamp — Technical AI Safety Track
+        details: Midlands, UK, September 2026
+
+      - label: Cambridge AI Safety Hub — UK AI Policy Course
+        details: Cambridge, UK, July - August 2026
 
     Publications:
-      - title: Zur Elektrodynamik bewegter Körper
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-06-30
-        url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
-        summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
+      - title: Prompt Optimization and Evaluation for LLM Automated Red Teaming
+        publisher: arXiv Preprint
+        releaseDate: 2025
+
+      - title: Technical blog post series on LLM red-teaming
+        publisher: TELUS Digital
+        releaseDate: 2024
+        summary: A three-part series on LLM red-teaming methodology and findings.
 
     Skills:
-      - name: Physics
-        level: Master
-        icon: fa-solid fa-hashtag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+      - name: Languages and tools
+        keywords: "Python, R, SQL, PyTorch, Transformers, Keras, HuggingFace, MLFlow, CUDA/GPU, Numpy"
+
+      - name: LLMs
+        keywords: "LLM red-teaming, representation engineering, fine-tuning, benchmarking & evaluation, LLM-as-a-judge"
+
+      - name: ML
+        keywords: "(un)supervised learning, classification, regression, hyperparameter tuning, CV, NLP, embeddings"
+
+      - name: Statistics
+        keywords: "causal inference, Bayesian statistics, data analysis and visualization, dimensionality reduction"
+
+      - name: Research and communication
+        keywords: "academic/technical writing, cross-functional collaboration, experimental design"
 
     Languages:
       - name: English
@@ -96,11 +111,3 @@ cv:
 
       - name: Russian
         summary: "Native speaker"
-
-    Interests:
-      - name: ML
-        icon: fa-solid fa-tag
-        keywords: "keyword1, keyword2"
-
-    Projects:
-      - name: Name
