@@ -196,3 +196,27 @@ html[data-theme-setting="light"] {
 #light-toggle:hover .fa-half-sun-moon::after {
   color: var(--global-theme-color);
 }
+
+/* CV entry list cleanup: al_folio_core ships .list-group-item/.table-cv with
+   no list-style or border reset, so unstyled <ul>/<table> defaults (bullet
+   markers, table cell border lines) show through around each entry's date
+   badge. Strip them so only the badge/content render. */
+.cv {
+  ul.list-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .list-group-item {
+    border: none;
+  }
+
+  table.table-cv,
+  table.table-cv tr,
+  table.table-cv td,
+  table.table-cv th {
+    border: none;
+    border-collapse: collapse;
+  }
+}
