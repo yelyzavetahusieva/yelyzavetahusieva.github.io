@@ -66,13 +66,18 @@
           {% assign date = null %}
         {% endif %}
 
-        <div class="col-xs-2 col-sm-2 col-md-2 text-center date-column">
-          <table class="table-cv">
+        <div class="col-xs-2 col-sm-2 col-md-2 text-center date-column" style="width: 110px; min-width: 110px; max-width: 110px; flex: 0 0 110px">
+          <table class="table-cv" style="width: 100%">
             <tbody>
               <tr>
                 <td>
                   {% if date %}
-                    <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px">{{ date }}</span>
+                    <span
+                      class="badge font-weight-bold danger-color-dark text-uppercase align-middle"
+                      style="display: inline-block; width: 100%; white-space: nowrap; font-size: 0.7rem"
+                    >
+                      {{- date -}}
+                    </span>
                   {% endif %}
                 </td>
               </tr>
@@ -82,8 +87,8 @@
               {% assign location = location | strip %}
               {% if location != '' %}
                 <tr>
-                  <td>
-                    <p class="location">{{ location }}</p>
+                  <td style="text-align: left">
+                    <p class="location" style="text-align: left; margin: 0.25rem 0 0; white-space: normal">{{ location }}</p>
                   </td>
                 </tr>
               {% endif %}
